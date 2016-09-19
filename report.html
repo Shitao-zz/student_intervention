@@ -12634,10 +12634,6 @@ Support Vector Machines (SVM) is a powerful classification technique. It aims to
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">f1_scoring</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-  <span class="n">y_pred</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
   
 
 <span class="c1"># TODO: Perform grid search on the classifier using the f1_scorer as the scoring method</span>
