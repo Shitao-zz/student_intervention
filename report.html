@@ -11800,7 +11800,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11852,7 +11852,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
@@ -11906,6 +11906,46 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned by a code reviewer, the current data is imbalanced, in which all classes are not represented equally. All 'yes' prediction can be used as a benchmark for our final prediction. The F1 score for predicting all 'yes' is presented as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+<span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">F1 score for predicting all &#39;yes&#39;: {:.4f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_passed</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_failed</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n_students</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+F1 score for predicting all &#39;yes&#39;: 0.8030
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Preparing-the-Data">Preparing the Data<a class="anchor-link" href="#Preparing-the-Data">&#182;</a></h2><p>In this section, we will prepare the data for modeling, training and testing.</p>
 <h3 id="Identify-feature-and-target-columns">Identify feature and target columns<a class="anchor-link" href="#Identify-feature-and-target-columns">&#182;</a></h3><p>It is often the case that the data you obtain contains non-numeric features. This can be a problem, as most machine learning algorithms expect numeric data to perform computations with.</p>
 <p>Run the code cell below to separate the student data into feature and target columns to see if any features are non-numeric.</p>
@@ -11915,7 +11955,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -11997,7 +12037,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12068,7 +12108,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12080,7 +12120,7 @@ Feature values:
 <span class="n">num_test</span> <span class="o">=</span> <span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">num_train</span>
 
 <span class="c1"># TODO: Shuffle and split the dataset into the number of training and testing points above</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span><span class="n">y_all</span><span class="p">,</span><span class="n">test_size</span> <span class="o">=</span> <span class="n">num_test</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span><span class="n">y_all</span><span class="p">,</span><span class="n">stratify</span><span class="o">=</span><span class="n">y_all</span><span class="p">,</span><span class="n">test_size</span> <span class="o">=</span> <span class="n">num_test</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -12148,7 +12188,8 @@ Testing set has 95 samples.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> I will use Gaussian Naive Bayes classifier, Decision tree classifier, Support vector machines classifier for this problem. Both of these three algorithms are powerful classification tools and have a number of real world applications. For the student intervention classification problem, I feel they are reasonable candidates.</p>
+<p><strong>Answer: </strong> I will use Gaussian Naive Bayes classifier, Decision tree classifier, Support vector machines classifier for this problem. Gaussian Naive Bayes is a very efficient method, especially for high dimensional problem. Decision tree classifier is very easy and straighforward to understand and explain. Support vector machines is very effective in high dimensional problem and can be generalized for not linear separable cases. The student data here can be very high dimensional data when we have much more data points. The model interpretability also need to be considered since we may need to explain to the board of directors. So many features describing the student may lead to a complex decision boundary.
+Both of these three algorithms are powerful classification tools and have a number of real world applications. In summary, I feel these three methods are good candidates for this problem.</p>
 <p><strong>Gaussian Naive Bayes classifier:</strong></p>
 <p>Naive Bayes method applies Bayes' theorem with the "naive" assumption of the independence between every pair of features. Gaussian Naive Bayes method assumes a Gaussian feature likelihood function.
 The Naive Bayes classifier have worked quite well in the some real world applications, such as document classification, spam filtering, text authorship and so on.</p>
@@ -12196,7 +12237,7 @@ Support vector machines do not work well with noisy data when the class are very
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12270,49 +12311,23 @@ Support vector machines do not work well with noisy data when the class are very
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span> 
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># TODO: Initialize the three models</span>
 <span class="n">clf_A</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 <span class="n">clf_B</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># TODO: Set up the training set sizes</span>
-<span class="n">index100</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># generate index for subset</span>
-<span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index100</span><span class="p">]</span>
-<span class="n">y_train_100</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index100</span><span class="p">]</span>
 
-<span class="n">index200</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span> <span class="c1"># generate index for subset</span>
-<span class="n">X_train_200</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index200</span><span class="p">]</span>
-<span class="n">y_train_200</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index200</span><span class="p">]</span>
-
-<span class="n">X_train_300</span> <span class="o">=</span> <span class="n">X_train</span>
-<span class="n">y_train_300</span> <span class="o">=</span> <span class="n">y_train</span>
-
-<span class="c1"># TODO: Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
-<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;Results from GaussianNB...&#39;</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;Results from Decision Tree Classifier...&#39;</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;Results from Support Vector Machine Classifier...&#39;</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">clf_B</span><span class="p">,</span> <span class="n">clf_C</span><span class="p">]:</span>
+    <span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">{}: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]:</span>
+        <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12325,85 +12340,87 @@ Support vector machines do not work well with noisy data when the class are very
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Results from GaussianNB...
+<pre>
+GaussianNB: 
+
 *********************************************
 Training set size: 100
 Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0017 seconds
-Made predictions in 0.0004 seconds.
-F1 score for training set: 0.6408.
-Made predictions in 0.0004 seconds.
-F1 score for test set: 0.6286.
+Trained model in 0.0020 seconds
+Made predictions in 0.0006 seconds.
+F1 score for training set: 0.5833.
+Made predictions in 0.0008 seconds.
+F1 score for test set: 0.5161.
 *********************************************
 Training set size: 200
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0012 seconds
-Made predictions in 0.0004 seconds.
-F1 score for training set: 0.4023.
+Trained model in 0.0021 seconds
+Made predictions in 0.0008 seconds.
+F1 score for training set: 0.8118.
 Made predictions in 0.0007 seconds.
-F1 score for test set: 0.4000.
+F1 score for test set: 0.7576.
 *********************************************
 Training set size: 300
 Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0034 seconds
-Made predictions in 0.0008 seconds.
-F1 score for training set: 0.8088.
-Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7500.
+Trained model in 0.0017 seconds
+Made predictions in 0.0006 seconds.
+F1 score for training set: 0.8000.
+Made predictions in 0.0010 seconds.
+F1 score for test set: 0.7273.
 
+DecisionTreeClassifier: 
 
-Results from Decision Tree Classifier...
 *********************************************
 Training set size: 100
 Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0013 seconds
-Made predictions in 0.0002 seconds.
+Trained model in 0.0014 seconds
+Made predictions in 0.0004 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0006 seconds.
-F1 score for test set: 0.7167.
+Made predictions in 0.0008 seconds.
+F1 score for test set: 0.7107.
 *********************************************
 Training set size: 200
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0014 seconds
-Made predictions in 0.0002 seconds.
+Trained model in 0.0018 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7097.
+Made predictions in 0.0006 seconds.
+F1 score for test set: 0.6885.
 *********************************************
 Training set size: 300
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0020 seconds
-Made predictions in 0.0003 seconds.
+Trained model in 0.0026 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7167.
+Made predictions in 0.0004 seconds.
+F1 score for test set: 0.6875.
 
+SVC: 
 
-Results from Support Vector Machine Classifier...
 *********************************************
 Training set size: 100
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0012 seconds
-Made predictions in 0.0008 seconds.
-F1 score for training set: 0.8428.
-Made predictions in 0.0008 seconds.
-F1 score for test set: 0.7662.
+Trained model in 0.0015 seconds
+Made predictions in 0.0011 seconds.
+F1 score for training set: 0.8919.
+Made predictions in 0.0011 seconds.
+F1 score for test set: 0.7737.
 *********************************************
 Training set size: 200
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0035 seconds
-Made predictions in 0.0024 seconds.
-F1 score for training set: 0.8671.
-Made predictions in 0.0012 seconds.
-F1 score for test set: 0.7724.
+Trained model in 0.0044 seconds
+Made predictions in 0.0038 seconds.
+F1 score for training set: 0.8795.
+Made predictions in 0.0013 seconds.
+F1 score for test set: 0.8182.
 *********************************************
 Training set size: 300
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0117 seconds
-Made predictions in 0.0060 seconds.
-F1 score for training set: 0.8692.
-Made predictions in 0.0019 seconds.
-F1 score for test set: 0.7586.
+Trained model in 0.0067 seconds
+Made predictions in 0.0048 seconds.
+F1 score for training set: 0.8664.
+Made predictions in 0.0037 seconds.
+F1 score for test set: 0.8289.
 </pre>
 </div>
 </div>
@@ -12440,24 +12457,24 @@ F1 score for test set: 0.7586.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0017s</td>
-<td style="text-align:center">0.0004s</td>
-<td style="text-align:center">0.6408</td>
-<td style="text-align:center">0.6286</td>
+<td style="text-align:center">0.0020s</td>
+<td style="text-align:center">0.0008s</td>
+<td style="text-align:center">0.5833</td>
+<td style="text-align:center">0.5161</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0012s</td>
+<td style="text-align:center">0.0021s</td>
 <td style="text-align:center">0.0007s</td>
-<td style="text-align:center">0.4023</td>
-<td style="text-align:center">0.4000</td>
+<td style="text-align:center">0.8118</td>
+<td style="text-align:center">0.7576</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0034s</td>
-<td style="text-align:center">0.0003s</td>
-<td style="text-align:center">0.8088</td>
-<td style="text-align:center">0.7500</td>
+<td style="text-align:center">0.0017s</td>
+<td style="text-align:center">0.0010s</td>
+<td style="text-align:center">0.8000</td>
+<td style="text-align:center">0.7273</td>
 </tr>
 </tbody>
 </table>
@@ -12474,24 +12491,24 @@ F1 score for test set: 0.7586.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0013s</td>
-<td style="text-align:center">0.0006s</td>
+<td style="text-align:center">0.0014s</td>
+<td style="text-align:center">0.0008s</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7167</td>
+<td style="text-align:center">0.7107</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0014s</td>
-<td style="text-align:center">0.0002s</td>
+<td style="text-align:center">0.0018s</td>
+<td style="text-align:center">0.0006s</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7097</td>
+<td style="text-align:center">0.6885</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0020s</td>
-<td style="text-align:center">0.0002s</td>
+<td style="text-align:center">0.0026s</td>
+<td style="text-align:center">0.0004s</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7167</td>
+<td style="text-align:center">0.6875</td>
 </tr>
 </tbody>
 </table>
@@ -12508,24 +12525,24 @@ F1 score for test set: 0.7586.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0012s</td>
-<td style="text-align:center">0.0008s</td>
-<td style="text-align:center">0.8428</td>
-<td style="text-align:center">0.7662</td>
+<td style="text-align:center">0.0015s</td>
+<td style="text-align:center">0.0011s</td>
+<td style="text-align:center">0.8919</td>
+<td style="text-align:center">0.7737</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0035s</td>
-<td style="text-align:center">0.0012s</td>
-<td style="text-align:center">0.8671</td>
-<td style="text-align:center">0.7724</td>
+<td style="text-align:center">0.0044s</td>
+<td style="text-align:center">0.0013s</td>
+<td style="text-align:center">0.8795</td>
+<td style="text-align:center">0.8182</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0117s</td>
-<td style="text-align:center">0.0019s</td>
-<td style="text-align:center">0.8692</td>
-<td style="text-align:center">0.7586</td>
+<td style="text-align:center">0.0067s</td>
+<td style="text-align:center">0.0037s</td>
+<td style="text-align:center">0.8664</td>
+<td style="text-align:center">0.8289</td>
 </tr>
 </tbody>
 </table>
@@ -12561,11 +12578,185 @@ F1 score for test set: 0.7586.
 <p><strong>Answer: </strong> 
 I compared the performance of 3 different models, including Gaussian Naive Bayes, Decision Tree Classifier and Support Vector Machines(SVM) Classifier. Among them, SVM has the highest test F1 score. Decision Tree Classifier shows a sign of overfitting, in which it performs extremely well at the training set but fails to generalize to the testing set.
 Gaussian Naive Bayes shows some unstable behaviour for the small training set size but performs relatively well for the large training set size.</p>
-<p>The performance is not the only thing we need to concern. Training a SVM takes more time the other two models (~ 3-5 times longer). This really depends on the training size and the computational resources. But the performance is still a very important factor because bad performance will lead to more false classifications, which may cost a lot of resources in the student intervention processes. On balance, I choose SVM as our final model.</p>
+<p>The performance is not the only thing we need to concern. Training a SVM takes more time the other two models (~ 2-3 times longer). This really depends on the training size and the computational resources. But the performance is still a very important factor because bad performance will lead to more false classifications, which may cost a lot of resources in the student intervention processes. On balance, I choose SVM as our final model.</p>
 <p>It should be noted that the python timer which implemented here has some strange behaviour. e.g. when I run the code second time, the exact time for training and testing maybe different but the SVM is the most computational expensive one in general. I guess the problem is due to the timer's percision. Any explanations will be highly appreciated.</p>
+<p>To take a close look at the performance of the SVM, I plot the confusion matrix. The model tends to be very conservative indicated by the fact that most of the misclassified lables are students who do not need intervention but the model actually suggests intervention.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Compute confusion matrix for a model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">clf_C</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<span class="c1"># view with a heatmap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True label&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion matrix for:</span><span class="se">\n</span><span class="s1">{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">));</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/swang/anaconda/lib/python2.7/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  warnings.warn(&#39;Matplotlib is building the font cache using fc-list. This may take a moment.&#39;)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12583,8 +12774,9 @@ Gaussian Naive Bayes shows some unstable behaviour for the small training set si
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-Support Vector Machines (SVM) is a powerful classification technique. It aims to find a hyperplane (line in 2d case) that separate the data points from different classes. The basic SVMs are linear classifiers which assumes the data points are linear separable. But in some cases, the data points are not linear separable. Fortunately, SVMs can handle this problem by doing a "kernel trick", which first transforms the data points into a high dimensional linear separable space, performs the linear separation and then transforms back. SVMs have a number of real world applications, such as text recognition, hand-written characters recognition and so on.</p>
-<p>In our case, the training data is used to help us decide the hyperplane of a SVM that separate the students into different classes. After that, we can label the testing data or new data points by their positions relative to the trained hyperplane.</p>
+In general, the model is trained with information we know about previous student who passed/failed, and then used to predict the outcomes for the new students.</p>
+<p>The SVM takes information about past students (age, gender, activities, etc), and uses them to create a function that draws a boundary between the students who passed and those who failed. The boundary should be drawn so as to maximize the margin between the students who passed or failed. Using this function created with students we already know passed or not, the SVM can look at new students' information and predict based on their positions relative to the trained boundary.</p>
+<p>In some cases, it is not easy to draw a boundary directly in low dimensions. The SVM separates the students who passed or failed by first transforming the data points into a high dimensional easy separable space, performing the separation and then transforming back. SVMs have a number of real world applications, such as text recognition, hand-written characters recognition and so on.</p>
 
 </div>
 </div>
@@ -12615,7 +12807,7 @@ Support Vector Machines (SVM) is a powerful classification technique. It aims to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12624,9 +12816,8 @@ Support Vector Machines (SVM) is a powerful classification technique. It aims to
 
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-         <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span>
-         <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]</span>
+         <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+         <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span><span class="s1">&#39;poly&#39;</span><span class="p">]</span>
         <span class="p">}</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
@@ -12660,14 +12851,14 @@ Support Vector Machines (SVM) is a powerful classification technique. It aims to
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>SVC(C=1.5, cache_size=200, class_weight=None, coef0=0.0,
-  decision_function_shape=None, degree=3, gamma=&#39;auto&#39;, kernel=&#39;rbf&#39;,
+<pre>SVC(C=0.01, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=&#39;auto&#39;, kernel=&#39;linear&#39;,
   max_iter=-1, probability=False, random_state=0, shrinking=True,
   tol=0.001, verbose=False)
-Made predictions in 0.0057 seconds.
-Tuned model has a training F1 score of 0.8976.
-Made predictions in 0.0018 seconds.
-Tuned model has a testing F1 score of 0.7552.
+Made predictions in 0.0039 seconds.
+Tuned model has a training F1 score of 0.8174.
+Made predictions in 0.0019 seconds.
+Tuned model has a testing F1 score of 0.8129.
 </pre>
 </div>
 </div>
@@ -12692,79 +12883,11 @@ Tuned model has a testing F1 score of 0.7552.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The final training F1 score is 0.8976 and the final testing F1 score is 0.7552. 
-The training score is higher and the testing score is lower than the untuned model case. 
-Model tuning provides us a better model based on traning data because there is an improvement in the training F1 score.</p>
-<p>However, I would argue the testing score is the one that matters because the what we care in the end is the model's ability to predict the unseen data. So I did another grid search using the testing data in the scoring function.
-This time, the testing F1 score improves to 0.7917.</p>
+The final training F1 score is 0.8174 and the final testing F1 score is 0.8129. 
+Both the training score and the testing score is lower than the untuned model case. This may be confusing at the first glance. However, the model tuning can actually provide a lower score because GridSearchCV uses the K fold cross validation while the untuned case uses train test split.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
-<span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
-
-<span class="c1"># TODO: Create the parameters list you wish to tune</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-         <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span>
-         <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]</span>
-        <span class="p">}</span>
-
-<span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
-<span class="k">def</span> <span class="nf">f1_scoring</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-  <span class="n">y_pred</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
-  
-
-<span class="c1"># TODO: Perform grid search on the classifier using the f1_scorer as the scoring method</span>
-<span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scoring</span><span class="p">)</span>
-
-<span class="c1"># TODO: Fit the grid search object to the training data and find the optimal parameters</span>
-<span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># Get the estimator</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
-<span class="k">print</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
-<span class="c1"># Report the final F1 score for training and testing after parameter tuning</span>
-<span class="k">print</span> <span class="s2">&quot;Tuned model has a training F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
-<span class="k">print</span> <span class="s2">&quot;Tuned model has a testing F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>SVC(C=0.1, cache_size=200, class_weight=None, coef0=0.0,
-  decision_function_shape=None, degree=3, gamma=&#39;auto&#39;, kernel=&#39;linear&#39;,
-  max_iter=-1, probability=False, random_state=0, shrinking=True,
-  tol=0.001, verbose=False)
-Made predictions in 0.0036 seconds.
-Tuned model has a training F1 score of 0.8383.
-Made predictions in 0.0012 seconds.
-Tuned model has a testing F1 score of 0.7917.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
